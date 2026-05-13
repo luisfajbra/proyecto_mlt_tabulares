@@ -1,0 +1,76 @@
+======================================================================
+REPORTE TÉCNICO - DETECCIÓN DE MALWARE ANDROID (MODALIDAD TABULAR)
+======================================================================
+
+Fecha: 2026-05-12 22:50:59
+
+1. ARQUITECTURA DEL MODELO
+----------------------------------------------------------------------
+Tipo: Red Neuronal Profunda (MLP)
+Versión: V1
+Features de entrada: 345
+Clases de salida: 5
+Optimizador: Adam
+Loss: Sparse Categorical Crossentropy
+Regularización: L2 + Batch Normalization + Dropout
+
+2. MÉTRICAS DE EVALUACIÓN (TEST SET)
+----------------------------------------------------------------------
+Accuracy:      0.910743
+Macro-F1:      0.892542 ⭐
+Weighted-F1:   0.911820
+Micro-F1:      0.910743
+
+3. REPORTE POR CLASE
+----------------------------------------------------------------------
+              precision    recall  f1-score   support
+
+      adware       0.72      0.93      0.81       450
+     banking       0.90      0.83      0.86       720
+      benign       0.90      0.94      0.92      1209
+    riskware       0.94      0.87      0.90      1165
+         sms       0.97      0.96      0.97      1464
+
+    accuracy                           0.91      5008
+   macro avg       0.89      0.90      0.89      5008
+weighted avg       0.92      0.91      0.91      5008
+
+
+4. TOP 20 FEATURES (Permutation Importance)
+----------------------------------------------------------------------
+ 1. permission.ACCESS_NETWORK_STATE          0.097486
+ 2. permission.GET_TASKS                     0.074041
+ 3. permission.READ_PHONE_STATE              0.067135
+ 4. permission.ACCESS_WIFI_STATE             0.054315
+ 5. permission.READ_EXTERNAL_STORAGE         0.053712
+ 6. permission.WRITE_EXTERNAL_STORAGE        0.052474
+ 7. permission.INSTALL_SHORTCUT              0.043986
+ 8. action.BOOT_COMPLETED                    0.042009
+ 9. permission.CALL_PHONE                    0.029894
+10. permission.RECEIVE_BOOT_COMPLETED        0.026225
+11. permission.WRITE_SMS                     0.024519
+12. permission.C2D_MESSAGE                   0.022453
+13. category.DEFAULT                         0.020741
+14. permission.SET_ALARM                     0.016450
+15. permission.GET_ACCOUNTS                  0.014689
+16. permission.ACCESS_COARSE_LOCATION        0.014641
+17. permission.ACCESS_LOCATION_EXTRA_COMMANDS 0.012819
+18. permission.VIBRATE                       0.012657
+19. category.LAUNCHER                        0.011534
+20. action.VIEW                              0.011434
+
+5. DATOS Y SPLITS
+----------------------------------------------------------------------
+Train samples:     8182
+Val samples:       1748
+Test samples:      5008
+Total:             14938
+
+6. DISTRIBUCIÓN DE CLASES (TEST)
+----------------------------------------------------------------------
+adware         :   450 ( 8.99%)
+banking        :   720 (14.38%)
+benign         :  1209 (24.14%)
+riskware       :  1165 (23.26%)
+sms            :  1464 (29.23%)
+
